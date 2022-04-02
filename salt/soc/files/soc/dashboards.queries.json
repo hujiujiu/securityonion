@@ -4,7 +4,7 @@
           { "name": "Alerts", "description": "Show all alerts", "query": "event.dataset: alert | table event.module rule.name event.severity source.ip destination.ip destination.port"},
           { "name": "NIDS Alerts", "description": "NIDS alerts", "query": "event.category: network AND event.dataset: alert | table rule.category rule.gid rule.uuid rule.name source.ip destination.ip destination.port"},
           { "name": "Wazuh/OSSEC", "description": "Wazuh/OSSEC HIDS alerts and logs", "query": "event.module:ossec | table rule.category rule.uuid rule.name agent.id agent.name log.full"},
-          { "name": "Sysmon", "description": "Sysmon logs", "query": "event.module:sysmon | table event.dataset user.name.keyword"},
+          { "name": "Sysmon", "description": "Sysmon logs", "query": "event.module:sysmon | table event.dataset user.name process.executable process.command_line process.parent.command_line"},
           { "name": "Strelka", "description": "Strelka logs", "query": "event.module:strelka | table file.mime_type file.name file.source"},
           { "name": "Zeek Notice", "description": "Zeek Notice logs", "query": "event.dataset:notice | table notice.note notice.message notice.sub_message source.ip destination.ip destination.port"},
           { "name": "Connections", "description": "Connection logs", "query": "event.dataset:conn | table source.ip destination.ip destination.port network.protocol network.transport connection.history connection.state connection.state_description source.geo.country_name destination.geo.country_name"},
@@ -16,7 +16,7 @@
           { "name": "Files", "description": "Files seen in network traffic", "query": "event.dataset:file | table file.mime_type file.source file.bytes.total source.ip destination.ip"},
           { "name": "FTP", "description": "File Transfer Protocol logs", "query": "event.dataset:ftp | table ftp.command ftp.argument ftp.user source.ip destination.ip destination.port"},
           { "name": "HTTP", "description": "Hyper Text Transport Protocol logs", "query": "event.dataset:http | table http.method http.status_code http.status_message http.useragent http.virtual_host http.uri source.ip destination.ip destination.port"},
-          { "name": "Intel", "description": "Zeek Intel framework hits", "query": "event.dataset:intel | table intel.indicator.keyword"},
+          { "name": "Intel", "description": "Zeek Intel framework hits", "query": "event.dataset:intel | table intel.indicator intel.indicator_type intel.seen_where source.ip destination.ip destination.port"},
           { "name": "IRC", "description": "Internet Relay Chat logs", "query": "event.dataset:irc | table irc.command.type irc.username irc.nickname irc.command.value irc.command.info source.ip destination.ip destination.port"},
           { "name": "KERBEROS", "description": "KERBEROS logs", "query": "event.dataset:kerberos | table kerberos.service kerberos.client kerberos.request_type source.ip destination.ip destination.port"},
           { "name": "MODBUS", "description": "MODBUS logs", "query": "event.dataset:modbus | table modbus.function source.ip destination.ip destination.port"},
@@ -34,12 +34,12 @@
           { "name": "SMB_Mapping", "description": "SMB mapping logs", "query": "event.dataset:smb_mapping | table smb.share_type smb.path smb.service source.ip destination.ip destination.port"},
           { "name": "SMTP", "description": "SMTP logs", "query": "event.dataset:smtp | table smtp.from smtp.recipient_to smtp.subject source.ip destination.ip destination.port"},
           { "name": "SNMP", "description": "SNMP logs", "query": "event.dataset:snmp | table snmp.community snmp.version source.ip destination.ip destination.port"},
-          { "name": "Software", "description": "List of software seen on the network by Zeek", "query": "event.dataset:software | table software.type software.name"},
+          { "name": "Software", "description": "List of software seen on the network by Zeek", "query": "event.dataset:software | table software.type software.name source.ip"},
           { "name": "SSH", "description": "SSH connections seen by Zeek", "query": "event.dataset:ssh | table ssh.client ssh.server ssh.direction ssh.version ssh.hassh_version source.ip destination.ip destination.port"},
           { "name": "SSL", "description": "SSL logs", "query": "event.dataset:ssl | table ssl.version ssl.validation_status ssl.server_name ssl.certificate.issuer ssl.certificate.subject source.ip destination.ip destination.port"},
           { "name": "SYSLOG", "description": "SYSLOG logs", "query": "event.dataset:syslog | table syslog.severity_label syslog.facility_label network.protocol source.ip destination.ip destination.port"},
           { "name": "Tunnel", "description": "Tunnels seen by Zeek", "query": "event.dataset:tunnel | table tunnel.type event.action source.ip destination.ip destination.port"},
           { "name": "Weird", "description": "Weird network traffic seen by Zeek", "query": "event.dataset:weird | table weird.name weird.additional_info source.ip destination.ip destination.port "},
           { "name": "x509", "description": "x.509 certificates seen by Zeek", "query": "event.dataset:x509 | table x509.certificate.key.length x509.san_dns x509.certificate.key.type x509.certificate.subject x509.certificate.issuer"},
-          { "name": "Firewall", "description": "Firewall logs", "query": "event.dataset:firewall | table rule.action source.ip destination.ip destination.port"}
+          { "name": "Firewall", "description": "Firewall logs", "query": "event.dataset:firewall | table rule.action interface.name network.transport source.ip destination.ip destination.port"}
         ]
